@@ -6,6 +6,35 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+
+    <asp:UpdatePanel runat="server" ID="UpdatePanelFiltros">
+        <ContentTemplate>
+            <% if (Page is Catalogo_web.ListadoArticulo)
+                { %>
+            <div id="filtros-container" class="container mt-3 p-3 border rounded shadow">
+                <!-- Búsqueda por nombre, marca o descripcion -->
+                <div class="mb-3 d-flex align-items-center">
+                    <asp:TextBox ID="txtFiltroRapido" CssClass="form-control form-control-sm me-2" placeholder="Buscar..." runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapido_TextChanged"></asp:TextBox>
+                    <button type="button" runat="server" onserverclick="BuscarButton_ServerClick" id="BuscarButton"
+                        class="btn btn-primary btn-sm">
+                        <i class="bi bi-search"></i>Buscar
+                    </button>
+                </div>
+
+
+                <% } %>
+            </div>
+
+            <%-- <% } %>--%>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+
+
+
+
+
+
     <asp:UpdatePanel runat="server" ID="UpdatePanelArticulos">
         <ContentTemplate>
 

@@ -15,6 +15,33 @@ namespace Catalogo_web
     {
 
         /// <summary>
+        /// Control UpdatePanelFiltros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelFiltros;
+
+        /// <summary>
+        /// Control txtFiltroRapido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroRapido;
+
+        /// <summary>
+        /// Control BuscarButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton BuscarButton;
+
+        /// <summary>
         /// Control UpdatePanelArticulos.
         /// </summary>
         /// <remarks>
