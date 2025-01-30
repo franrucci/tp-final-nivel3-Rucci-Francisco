@@ -65,5 +65,20 @@ namespace Catalogo_web
                 RepeaterArticulos.DataBind();
             }
         }
+
+        protected void chkFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void AplicarFiltrosButton_ServerClick(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LimpiarFiltrosButton_ServerClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

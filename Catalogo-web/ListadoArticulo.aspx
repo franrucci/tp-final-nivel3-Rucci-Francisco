@@ -12,7 +12,7 @@
             <% if (Page is Catalogo_web.ListadoArticulo)
                 { %>
             <div id="filtros-container" class="container mt-3 p-3 border rounded shadow">
-                <!-- Búsqueda por nombre, marca o descripcion -->
+                <!-- Filtro rapido por nombre, marca o descripcion -->
                 <div class="mb-3 d-flex align-items-center">
                     <asp:TextBox ID="txtFiltroRapido" CssClass="form-control form-control-sm me-2" placeholder="Buscar..." runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapido_TextChanged"></asp:TextBox>
                     <button type="button" runat="server" onserverclick="BuscarButton_ServerClick" id="BuscarButton"
@@ -22,18 +22,68 @@
                 </div>
 
 
+                <!-- Filtro avanzado -->
+                <div class="form-check mb-2">
+                    <asp:CheckBox ID="chkFiltroAvanzado" CssClass="" OnCheckedChanged="chkFiltroAvanzado_CheckedChanged" AutoPostBack="true" runat="server" />
+                    <label class="form-check-label">
+                        <i class="bi bi-funnel-fill"></i>Filtro avanzado
+                    </label>
+                </div>
                 <% } %>
-            </div>
 
-            <%-- <% } %>--%>
+                <% if (chkFiltroAvanzado.Checked)
+                    { %>
+                <div class="row">
+
+                    <!-- Ordenar por -->
+                    <div class="col-md-6 mb-2">
+                        <asp:Label Text="Ordenar por:" class="form-label" runat="server" />
+                        <asp:DropDownList ID="OrdenTipoDropDownList" CssClass="form-select form-select-sm" runat="server">
+                            <asp:ListItem Text="Categoría" />
+                            <asp:ListItem Text="Marca" />
+                            <asp:ListItem Text="Precio" />
+                        </asp:DropDownList>
+                    </div>
+
+                    <!-- Criterio -->
+                    <div class="col-md-6 mb-2">
+                        <asp:Label Text="Criterio" class="form-label" runat="server" />
+                        <asp:DropDownList runat="server" ID="ddlCriterio" CssClass="form-select form-select-sm"></asp:DropDownList>
+                    </div>
+
+
+                    <!-- Filtro -->
+                    <div class="col-md-6 mb-2">
+                        <asp:Label Text="Filtro" runat="server" />
+                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control form-control-sm" />
+                    </div>
+
+
+                    <!-- Botones de Buscar y limpiar -->
+                    <div class="d-flex justify-content-end mt-3">
+                        <asp:Button
+                            runat="server"
+                            OnClick="AplicarFiltrosButton_ServerClick"
+                            ID="Button1"
+                            CssClass="btn btn-success btn-sm mx-1"
+                            Text="Buscar"
+                            CausesValidation="false"
+                            UseSubmitBehavior="false" />
+
+                        <asp:Button
+                            runat="server"
+                            OnClick="LimpiarFiltrosButton_ServerClick"
+                            ID="Button2"
+                            CssClass="btn btn-danger btn-sm"
+                            Text="Limpiar"
+                            CausesValidation="false"
+                            UseSubmitBehavior="false" />
+                    </div>
+
+                    <% } %>
+                </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
-
-
-
-
 
     <asp:UpdatePanel runat="server" ID="UpdatePanelArticulos">
         <ContentTemplate>
