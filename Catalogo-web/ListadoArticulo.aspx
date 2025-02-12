@@ -38,7 +38,7 @@
                     <!-- Ordenar por -->
                     <div class="col-md-6 mb-2">
                         <asp:Label Text="Ordenar por:" class="form-label" runat="server" />
-                        <asp:DropDownList ID="OrdenTipoDropDownList" CssClass="form-select form-select-sm" runat="server">
+                        <asp:DropDownList ID="ddlOrdenarTipo" CssClass="form-select form-select-sm" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOrdenarTipo_SelectedIndexChanged">
                             <asp:ListItem Text="Categoría" />
                             <asp:ListItem Text="Marca" />
                             <asp:ListItem Text="Precio" />
@@ -63,8 +63,8 @@
                     <div class="d-flex justify-content-end mt-3">
                         <asp:Button
                             runat="server"
-                            OnClick="AplicarFiltrosButton_ServerClick"
-                            ID="Button1"
+                            OnClick="btnBuscar_Click"
+                            ID="btnBuscar"
                             CssClass="btn btn-success btn-sm mx-1"
                             Text="Buscar"
                             CausesValidation="false"
@@ -72,8 +72,8 @@
 
                         <asp:Button
                             runat="server"
-                            OnClick="LimpiarFiltrosButton_ServerClick"
-                            ID="Button2"
+                            OnClick="btnLimpiar_Click"
+                            ID="btnLimpiar"
                             CssClass="btn btn-danger btn-sm"
                             Text="Limpiar"
                             CausesValidation="false"
@@ -82,43 +82,37 @@
 
                     <% } %>
                 </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
 
-    <asp:UpdatePanel runat="server" ID="UpdatePanelArticulos">
-        <ContentTemplate>
+                <asp:Repeater runat="server" ID="repeaterArticulos">
+                    <ItemTemplate>
 
-            <asp:Repeater runat="server" ID="RepeaterArticulos">
-                <ItemTemplate>
+                        <div class="card horizontal-card my-4 shadow-lg">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-md-4">
+                                    <asp:Image
+                                        ID="ImagenProducto"
+                                        ImageUrl='<%# Eval("ImagenUrl") != null && !string.IsNullOrEmpty(Eval("ImagenUrl").ToString()) ? Eval("ImagenUrl").ToString() : Negocio.ArticuloNegocio.ImagenError %>'
+                                        CssClass="img-fluid img-proyect"
+                                        AlternateText="Imagen del producto"
+                                        onerror="ImagenError(this)"
+                                        runat="server" />
+                                </div>
 
-                    <div class="card horizontal-card my-4 shadow-lg">
-                        <div class="row g-0 align-items-center">
-                            <div class="col-md-4">
-                                <asp:Image
-                                    ID="ImagenProducto"
-                                    ImageUrl='<%# Eval("ImagenUrl") != null && !string.IsNullOrEmpty(Eval("ImagenUrl").ToString()) ? Eval("ImagenUrl").ToString() : Negocio.ArticuloNegocio.ImagenError %>'
-                                    CssClass="img-fluid img-proyect"
-                                    AlternateText="Imagen del producto"
-                                    onerror="ImagenError(this)"
-                                    runat="server" />
-                            </div>
-
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-category mb-2 text-muted"><span><%#Eval("Categoria.Descripcion")%></span></h5>
-                                    <h5 class="card-brand text-uppercase text-secondary"><span><%#Eval("Marca.Descripcion")%></span></h5>
-                                    <h5 class="card-title text-primary fw-bold mt-3"><%#Eval("Nombre") %></h5>
-                                    <p class="card-price text-success fw-bold fs-5">$<%# RetornarPrecioConMenosDecimales((decimal)Eval("Precio")) %></p>
-                                    <a href="DetalleArticulo.aspx?id=<%#Eval("Id") %>" class="btn btn-outline-primary mt-3">Ver Detalle</a>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-category mb-2 text-muted"><span><%#Eval("Categoria.Descripcion")%></span></h5>
+                                        <h5 class="card-brand text-uppercase text-secondary"><span><%#Eval("Marca.Descripcion")%></span></h5>
+                                        <h5 class="card-title text-primary fw-bold mt-3"><%#Eval("Nombre") %></h5>
+                                        <p class="card-price text-success fw-bold fs-5">$<%# RetornarPrecioConMenosDecimales((decimal)Eval("Precio")) %></p>
+                                        <a href="DetalleArticulo.aspx?id=<%#Eval("Id") %>" class="btn btn-outline-primary mt-3">Ver Detalle</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
 
-                </ItemTemplate>
-            </asp:Repeater>
-
+                    </ItemTemplate>
+                </asp:Repeater>
         </ContentTemplate>
     </asp:UpdatePanel>
 

@@ -15,20 +15,23 @@ namespace Catalogo_web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarArticulos();
-
+            if (!IsPostBack)
+            {
+                CargarArticulos();
+                CargarDdl();
+            }
         }
 
         public void CargarArticulos()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             Session.Add("listaArticulos", negocio.ListarArticulos());
-            RepeaterArticulos.DataSource = Session["listaArticulos"];
-            RepeaterArticulos.DataBind();
+            repeaterArticulos.DataSource = Session["listaArticulos"];
+            repeaterArticulos.DataBind();
         }
 
-        // Formatea el precio
-        public string RetornarPrecioConMenosDecimales(decimal precio)
+        
+        public string RetornarPrecioConMenosDecimales(decimal precio) // Formatea el precio
         {
             return ArticuloNegocio.RetornarPrecioConMenosDecimales(precio);
         }
@@ -42,8 +45,8 @@ namespace Catalogo_web
                 (x.Marca != null && x.Marca.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper())) ||
                 (x.Categoria != null && x.Categoria.Descripcion != null && x.Categoria.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()))
             );
-            RepeaterArticulos.DataSource = listaFiltrada;
-            RepeaterArticulos.DataBind();
+            repeaterArticulos.DataSource = listaFiltrada;
+            repeaterArticulos.DataBind();
         }
 
         protected void BuscarButton_ServerClick(object sender, EventArgs e)
@@ -61,24 +64,59 @@ namespace Catalogo_web
                 );
 
                 // Asigna la lista filtrada al Repeater
-                RepeaterArticulos.DataSource = listaFiltrada;
-                RepeaterArticulos.DataBind();
+                repeaterArticulos.DataSource = listaFiltrada;
+                repeaterArticulos.DataBind();
             }
         }
 
         protected void chkFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
         {
-
+            txtFiltroRapido.Enabled = !chkFiltroAvanzado.Checked; // Deshabilita el filtro rápido si está activado el filtro avanzado
         }
 
-        protected void AplicarFiltrosButton_ServerClick(object sender, EventArgs e)
+        protected void ddlOrdenarTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            CargarDdl();
         }
 
-        protected void LimpiarFiltrosButton_ServerClick(object sender, EventArgs e)
+        private void CargarDdl()
         {
+            ddlCriterio.Items.Clear(); // Para que no acumule las cosas cargadas.
+            if ((ddlOrdenarTipo.SelectedItem.ToString() == "Categoría") || (ddlOrdenarTipo.SelectedItem.ToString() == "Marca"))
+            {
+                ddlCriterio.Items.Add("Contiene");
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
+            else
+            {
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Mayor a");
+                ddlCriterio.Items.Add("Menor a");
+            }
+        }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                repeaterArticulos.DataSource = negocio.FiltrarArticulos(ddlOrdenarTipo.SelectedItem.ToString(), ddlCriterio.SelectedItem.ToString(), txtFiltro.Text);
+                repeaterArticulos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw ex;
+            }
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtFiltro.Text = "";
+            ddlOrdenarTipo.SelectedIndex = ddlOrdenarTipo.Items.IndexOf(ddlOrdenarTipo.Items.FindByText("Categoría"));
+            ddlCriterio.SelectedIndex = ddlCriterio.Items.IndexOf(ddlCriterio.Items.FindByText("Contiene"));
+            CargarArticulos();
         }
     }
 }

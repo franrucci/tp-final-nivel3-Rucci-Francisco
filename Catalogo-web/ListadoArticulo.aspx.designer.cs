@@ -51,13 +51,13 @@ namespace Catalogo_web
         protected global::System.Web.UI.WebControls.CheckBox chkFiltroAvanzado;
 
         /// <summary>
-        /// Control OrdenTipoDropDownList.
+        /// Control ddlOrdenarTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList OrdenTipoDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrdenarTipo;
 
         /// <summary>
         /// Control ddlCriterio.
@@ -78,39 +78,30 @@ namespace Catalogo_web
         protected global::System.Web.UI.WebControls.TextBox txtFiltro;
 
         /// <summary>
-        /// Control Button1.
+        /// Control btnBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Control Button2.
+        /// Control btnLimpiar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnLimpiar;
 
         /// <summary>
-        /// Control UpdatePanelArticulos.
+        /// Control repeaterArticulos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelArticulos;
-
-        /// <summary>
-        /// Control RepeaterArticulos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterArticulos;
+        protected global::System.Web.UI.WebControls.Repeater repeaterArticulos;
     }
 }

@@ -63,40 +63,59 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Tipo, A.IdMarca, A.IdCategoria, ImagenUrl, Precio From ARTICULOS A, CATEGORIAS C, MARCAS M Where A.IdCategoria = C.Id And A.IdMarca = M.Id And ";
-                if (campo == "Nombre")
+                string consulta = "Select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion Marca, C.Descripcion Tipo, A.IdMarca, A.IdCategoria, ImagenUrl, Precio " +
+                                  "From ARTICULOS A, CATEGORIAS C, MARCAS M " +
+                                  "Where A.IdCategoria = C.Id And A.IdMarca = M.Id And ";
+
+                if (campo == "Categoría")
                 {
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "Nombre like '" + filtro + "%' ";
+                            consulta += "C.Descripcion like '" + filtro + "%' ";
                             break;
                         case "Termina con":
-                            consulta += "Nombre like '%" + filtro + "'";
+                            consulta += "C.Descripcion like '%" + filtro + "' ";
                             break;
                         default:
-                            consulta += "Nombre like '%" + filtro + "%'";
+                            consulta += "C.Descripcion like '%" + filtro + "%' ";
                             break;
                     }
                 }
-                else
+                else if (campo == "Marca")
                 {
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "C.Descripcion like '%" + filtro + "%'";
+                            consulta += "M.Descripcion like '" + filtro + "%' ";
                             break;
                         case "Termina con":
-                            consulta += "C.Descripcion like '%" + filtro + "'";
+                            consulta += "M.Descripcion like '%" + filtro + "' ";
                             break;
                         default:
-                            consulta += "C.Descripcion like '%" + filtro + "%'";
+                            consulta += "M.Descripcion like '%" + filtro + "%' ";
+                            break;
+                    }
+                }
+                else // Aca es para "Precio"
+                {
+                    switch (criterio)
+                    {
+                        case "Igual a":
+                            consulta += "Precio = " + filtro + " ";
+                            break;
+                        case "Mayor a":
+                            consulta += "Precio > " + filtro + " ";
+                            break;
+                        default:
+                            consulta += "Precio < " + filtro + " ";
                             break;
                     }
                 }
 
                 datos.SetearConsulta(consulta);
                 datos.EjecutarLectura();
+
                 while (datos.Lector.Read())
                 {
                     Articulo articulo = new Articulo();
