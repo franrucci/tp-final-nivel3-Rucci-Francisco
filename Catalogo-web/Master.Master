@@ -25,6 +25,7 @@
                     <div class="navbar-nav">
                         <a class="nav-link btn btn-link" href="Default.aspx">Inicio</a>
                         <a class="nav-link btn btn-link" href="ListadoArticulo.aspx">Catálogo</a>
+                        <a class="nav-link btn btn-link" href="GestionArticulo.aspx">Gestión de productos</a>
                     </div>
 
                     <!-- Botones de Iniciar Sesión y Registrarse -->

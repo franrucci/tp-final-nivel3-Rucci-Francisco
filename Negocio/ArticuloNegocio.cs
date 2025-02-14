@@ -214,7 +214,6 @@ namespace Negocio
 
         public static string RetornarPrecioConMenosDecimales(decimal precio)
         {
-            // Trunca el precio a dos decimales sin redondear
             decimal precioTruncado = Math.Floor(precio * 100) / 100;
             return precioTruncado.ToString("F2"); // Formatea a dos decimales como string
         }

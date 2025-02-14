@@ -2,116 +2,112 @@
 }
 
 .custom-card {
-    background: linear-gradient(135deg, #e0e0e0, #f8f9fa); /* Degradado en tonos grises */
-    border: 1px solid #ccc; /* Borde sutil */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para un efecto moderno */
-    border-radius: 10px; /* Bordes redondeados */
+    background: linear-gradient(135deg, #e0e0e0, #f8f9fa);
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .custom-card-title {
-    color: #2c3e50; /* Color del título */
+    color: #2c3e50;
     font-weight: bold;
 }
 
 .custom-card-text {
-    color: #34495e; /* Color del texto */
+    color: #34495e;
 }
 
-/* Ajuste para centrar exactamente los botones del medio */
 .navbar-nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* Estilo específico para las tarjetas del Repeater */
 .custom-repeater-card {
-    max-width: 300px; /* Aumenta el ancho máximo */
-    margin: auto; /* Centra las tarjetas */
-    background-color: #ffffff; /* Fondo blanco */
-    border: 1px solid #ccc; /* Borde sutil */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    border-radius: 10px; /* Bordes redondeados */
-    overflow: hidden; /* Asegura que nada sobresalga */
+    max-width: 300px;
+    margin: auto;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-/* Contenedor para la imagen */
 .custom-repeater-card-image-container {
-    width: 100%; /* Ocupa todo el ancho de la tarjeta */
-    height: 200px; /* Aumenta la altura de la imagen */
-    display: flex; /* Centra el contenido */
-    align-items: center; /* Alineación vertical */
-    justify-content: center; /* Alineación horizontal */
-    background-color: #ffffff; /* Fondo de respaldo */
-    overflow: hidden; /* Oculta cualquier desbordamiento */
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    overflow: hidden;
 }
 
-    .custom-repeater-card-image-container img {
-        max-width: 100%; /* Asegura que la imagen no se desborde horizontalmente */
-        max-height: 100%; /* Asegura que la imagen no se desborde verticalmente */
-        object-fit: contain; /* Mantiene las proporciones sin cortar la imagen */
-    }
+.custom-repeater-card-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
 
 .custom-repeater-card-body {
-    padding: 15px; /* Espacio interno para el contenido */
+    padding: 15px;
 }
 
 .custom-repeater-card-title {
-    font-size: 18px; /* Ajusta el tamaño del título */
+    font-size: 18px;
     font-weight: bold;
     color: #2c3e50;
     margin-bottom: 10px;
 }
 
 .custom-repeater-card-text {
-    font-size: 15px; /* Ajusta el tamaño del texto */
+    font-size: 15px;
     color: #34495e;
 }
 
-/* Card principal */
 .horizontal-card {
-    border: 1px solid #ddd; /* Borde suave */
-    border-radius: 12px; /* Bordes redondeados */
-    overflow: hidden; /* Oculta contenido que sobresalga */
-    background-color: #fff; /* Fondo blanco */
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
 }
 
-/* Imagen del producto */
 .card-image-custom {
-    height: 100%; /* Ocupa todo el alto del contenedor */
-    object-fit: cover; /* Asegura que la imagen mantenga proporción */
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Categoría */
 .card-category span {
     font-weight: bold;
-    color: #6c757d; /* Gris elegante */
+    color: #6c757d;
 }
 
-/* Marca */
 .card-brand span {
     font-weight: bold;
-    color: #495057; /* Gris oscuro */
+    color: #495057;
 }
 
-/* Título del producto */
 .card-title {
-    font-size: 1.5rem; /* Tamaño destacado */
+    font-size: 1.5rem;
 }
 
-/* Precio */
 .card-price {
-    font-size: 1.25rem; /* Resalta el precio */
+    font-size: 1.25rem;
 }
 
-/* Botón de detalles */
 .btn-outline-primary {
-    border-radius: 20px; /* Botón redondeado */
-    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 20px;
+    padding: 10px 20px;
     transition: background-color 0.3s, color 0.3s;
 }
 
-    .btn-outline-primary:hover {
-        background-color: #007bff; /* Azul intenso */
-        color: #fff; /* Texto blanco */
-    }
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.gridview-header th {
+    border-top: 2px solid #333;
+    background-color: #f4f4f4;
+    color: #333;
+}
