@@ -51,19 +51,17 @@ namespace Catalogo_web
 
         protected void BuscarButton_ServerClick(object sender, EventArgs e)
         {
-            // Verifica si hay una lista en la sesión
             if (Session["listaArticulos"] != null)
             {
                 List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
 
-                // Filtra por Nombre, Marca o Categoría
+                // Filtro por Nombre, Marca o Categoría
                 List<Articulo> listaFiltrada = lista.FindAll(x =>
                     x.Nombre.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()) ||
                     (x.Marca != null && x.Marca.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper())) ||
                     (x.Categoria != null && x.Categoria.Descripcion != null && x.Categoria.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()))
                 );
 
-                // Asigna la lista filtrada al Repeater
                 repeaterArticulos.DataSource = listaFiltrada;
                 repeaterArticulos.DataBind();
             }
@@ -71,7 +69,7 @@ namespace Catalogo_web
 
         protected void chkFiltroAvanzado_CheckedChanged(object sender, EventArgs e)
         {
-            txtFiltroRapido.Enabled = !chkFiltroAvanzado.Checked; // Deshabilita el filtro rápido si está activado el filtro avanzado
+            txtFiltroRapido.Enabled = !chkFiltroAvanzado.Checked;
         }
 
         protected void ddlOrdenarTipo_SelectedIndexChanged(object sender, EventArgs e)

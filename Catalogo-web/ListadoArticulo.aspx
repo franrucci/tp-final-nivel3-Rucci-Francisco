@@ -21,7 +21,6 @@
                     </button>
                 </div>
 
-
                 <!-- Filtro avanzado -->
                 <div class="form-check mb-2">
                     <asp:CheckBox ID="chkFiltroAvanzado" CssClass="" OnCheckedChanged="chkFiltroAvanzado_CheckedChanged" AutoPostBack="true" runat="server" />
@@ -34,8 +33,6 @@
                 <% if (chkFiltroAvanzado.Checked)
                     { %>
                 <div class="row">
-
-                    <!-- Ordenar por -->
                     <div class="col-md-6 mb-2">
                         <asp:Label Text="Ordenar por:" class="form-label" runat="server" />
                         <asp:DropDownList ID="ddlOrdenarTipo" CssClass="form-select form-select-sm" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlOrdenarTipo_SelectedIndexChanged">
@@ -45,21 +42,16 @@
                         </asp:DropDownList>
                     </div>
 
-                    <!-- Criterio -->
                     <div class="col-md-6 mb-2">
                         <asp:Label Text="Criterio" class="form-label" runat="server" />
                         <asp:DropDownList runat="server" ID="ddlCriterio" CssClass="form-select form-select-sm"></asp:DropDownList>
                     </div>
 
-
-                    <!-- Filtro -->
                     <div class="col-md-6 mb-2">
                         <asp:Label Text="Filtro" runat="server" />
                         <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control form-control-sm" />
                     </div>
 
-
-                    <!-- Botones de Buscar y limpiar -->
                     <div class="d-flex justify-content-end mt-3">
                         <asp:Button
                             runat="server"
@@ -110,11 +102,8 @@
                             </div>
                         </div>
 
-
                     </ItemTemplate>
                 </asp:Repeater>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
 </asp:Content>
