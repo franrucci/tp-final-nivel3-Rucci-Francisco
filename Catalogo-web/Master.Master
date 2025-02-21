@@ -18,25 +18,45 @@
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
 
                 <button class="btn btn-outline-secondary menu-hamburguesa" onclick="toggleMenu()" type="button">
                     ☰
                 </button>
 
+                <% if (!Negocio.Seguridad.SesionActiva(Session["usuario"]))
+                    { %>
+                <!-- Si no hay sesión activa -->
                 <div class="navbar-nav menu-normal">
                     <a class="nav-link btn btn-link" href="Default.aspx">Inicio</a>
                     <a class="nav-link btn btn-link" href="ListadoArticulo.aspx">Catálogo</a>
+                </div>
+                <div class="d-flex ms-auto">
+                    <a class="btn btn-outline-primary me-2" href="Login.aspx">Iniciar Sesión</a>
+                </div>
+
+                <% }
+                    else
+                    { %>
+                <!-- Si hay sesión activa -->
+                <div class="navbar-nav menu-normal">
+                    <a class="nav-link btn btn-link" href="Default.aspx">Inicio</a>
+                    <a class="nav-link btn btn-link" href="ListadoArticulo.aspx">Catálogo</a>
+
+                    <% if (Negocio.Seguridad.EsAdmin(Session["usuario"])) //Valido si es ADMIN
+                        { %>
                     <a class="nav-link btn btn-link" href="GestionArticulo.aspx">Gestión de productos</a>
+                    <% } %>
                 </div>
 
                 <div class="d-flex ms-auto">
-                    <a class="btn btn-outline-primary me-2" href="Login.aspx">Iniciar Sesión</a>
-                    <a class="btn btn-outline-success" href="FormularioRegistro.aspx">Registrarse</a>
+                    <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión" CssClass="btn btn-outline-danger" OnClick="btnCerrarSesion_Click" />
                 </div>
+                <% } %>
             </div>
         </nav>
+
 
         <div id="sidebarMenu" class="sidebar">
             <button class="close-btn" onclick="toggleMenu()">×</button>

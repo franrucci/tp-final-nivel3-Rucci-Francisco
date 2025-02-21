@@ -73,6 +73,7 @@
     <Content Include="Global.asax" />
     <Content Include="Js\JavaScript.js" />
     <Content Include="ListadoArticulo.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +121,13 @@
     </Compile>
     <Compile Include="ListadoArticulo.aspx.designer.cs">
       <DependentUpon>ListadoArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
