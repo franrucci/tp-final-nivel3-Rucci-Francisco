@@ -17,7 +17,7 @@ namespace Catalogo_web
             {
                 if (!Seguridad.SesionActiva(Session["usuario"]))
                 {
-                    Response.Redirect("Default.aspx", false);
+                    Response.Redirect("Login.aspx", false);
                 }
             }
 

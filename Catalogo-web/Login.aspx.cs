@@ -9,20 +9,20 @@ using Negocio;
 
 namespace Catalogo_web
 {
-	public partial class Login : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    public partial class Login : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
-		}
+        }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-			Usuario usuario = new Usuario();
+            Usuario usuario = new Usuario();
             UsuarioNegocio negocio = new UsuarioNegocio();
             try
-			{
-				usuario.Email = txtEmail.Text;
+            {
+                usuario.Email = txtEmail.Text;
                 usuario.Password = txtPassword.Text;
                 if (negocio.ValidarUsuario(usuario)) // Si se logueo correctamente
                 {
@@ -31,13 +31,13 @@ namespace Catalogo_web
                 }
                 else
                 {
-                    Session.Add("error", "Usuario o contraseña incorrectos");
-                    Response.Redirect("Error.aspx", false);
+                    lblError.Text = "Usuario o contraseña incorrectos.";
+                    lblError.Visible = true;
                 }
             }
             catch (Exception ex)
-			{
-				Session.Add("Error", ex.ToString());
+            {
+                Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
         }
