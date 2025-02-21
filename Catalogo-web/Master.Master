@@ -14,20 +14,18 @@
     <script src="Js/JavaScript.js"></script>
 </head>
 
-<body>
-    <form id="form1" runat="server">
+<body class="d-flex flex-column min-vh-100">
+    <form id="form1" runat="server" class="flex-grow-1">
         <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-
                 <button class="btn btn-outline-secondary menu-hamburguesa" onclick="toggleMenu()" type="button">
                     ☰
                 </button>
 
                 <% if (!Negocio.Seguridad.SesionActiva(Session["usuario"]))
                     { %>
-                <!-- Si no hay sesión activa -->
                 <div class="navbar-nav menu-normal">
                     <a class="nav-link btn btn-link" href="Default.aspx">Inicio</a>
                     <a class="nav-link btn btn-link" href="ListadoArticulo.aspx">Catálogo</a>
@@ -39,12 +37,11 @@
                 <% }
                     else
                     { %>
-                <!-- Si hay sesión activa -->
                 <div class="navbar-nav menu-normal">
                     <a class="nav-link btn btn-link" href="Default.aspx">Inicio</a>
                     <a class="nav-link btn btn-link" href="ListadoArticulo.aspx">Catálogo</a>
 
-                    <% if (Negocio.Seguridad.EsAdmin(Session["usuario"])) //Valido si es ADMIN
+                    <% if (Negocio.Seguridad.EsAdmin(Session["usuario"]))
                         { %>
                     <a class="nav-link btn btn-link" href="GestionArticulo.aspx">Gestión de productos</a>
                     <% } %>
@@ -57,7 +54,6 @@
             </div>
         </nav>
 
-
         <div id="sidebarMenu" class="sidebar">
             <button class="close-btn" onclick="toggleMenu()">×</button>
             <a href="Default.aspx">Inicio</a>
@@ -67,16 +63,16 @@
 
         <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
-        <div class="container">
+        <div class="container flex-grow-1">
             <hr />
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
         </div>
-
-        <footer class="text-center mt-4">
-            <hr />
-            <p>&copy; 2025 Francisco Rucci. Todos los derechos reservados.</p>
-            <p>Contacto: franrucci01@gmail.com</p>
-        </footer>
     </form>
+
+    <footer class="text-center mt-auto bg-light py-2">
+        <hr />
+        <p>&copy; 2025 Francisco Rucci. Todos los derechos reservados.</p>
+        <p>Contacto: franrucci01@gmail.com</p>
+    </footer>
 </body>
 </html>
