@@ -4,7 +4,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-6">
@@ -50,15 +49,47 @@
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
                         <div class="mb-3">
-                            <label for="txtImagenUrlArticulo" class="form-label">URL Imagen</label>
-                            <asp:TextBox runat="server" ID="txtImagenUrlArticulo" CssClass="form-control" AutoPostBack="false" OnTextChanged="txtImagenUrlArticulo_TextChanged" />
+                            <asp:CheckBox ID="chkSubirArchivo" runat="server" AutoPostBack="true" OnCheckedChanged="chkSubirArchivo_CheckedChanged" />
+                            <label class="form-check-label" for="chkSubirArchivo">Subir imagen desde archivo</label>
                         </div>
+
+                        <!-- Input para URL de imagen -->
+                        <div class="mb-3" id="divUrlImagen" runat="server">
+                            <label for="txtImagenUrlArticulo" class="form-label">URL Imagen</label>
+                            <asp:TextBox runat="server" ID="txtImagenUrlArticulo" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtImagenUrlArticulo_TextChanged" />
+                        </div>
+
+                        <!-- Input para subir imagen desde archivo -->
+                        <%if (chkSubirArchivo.Checked)
+                            {%>
+                        <div class="mb-3" id="divFileUpload" runat="server">
+                            <label for="fuImagenArticulo" class="form-label">Seleccionar Archivo</label>
+                            <input type="file" id="txtImagenArchivo" runat="server" class="form-control" onchange="actualizarImagen()" />
+                        </div>
+                        <% } %>
+
                         <asp:Image ImageUrl="https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
-                            runat="server" ID="imgArticulo" CssClass="img-fluid" />
+                            runat="server" ID="imgArticulo" CssClass="img-fluid mb-3" />
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        function actualizarImagen() {
+            var inputFile = document.getElementById('<%= txtImagenArchivo.ClientID %>');
+            var imgArticulo = document.getElementById('<%= imgArticulo.ClientID %>');
+
+            if (inputFile.files && inputFile.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imgArticulo.src = e.target.result;
+                };
+                reader.readAsDataURL(inputFile.files[0]);
+            }
+        }
+    </script>
 
 </asp:Content>

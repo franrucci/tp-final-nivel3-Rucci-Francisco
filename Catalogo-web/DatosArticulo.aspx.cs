@@ -91,8 +91,17 @@ namespace Catalogo_web
             txtNombre.Text = articulo.Nombre;
             txtDescripcion.Text = articulo.Descripcion;
             txtPrecio.Text = articulo.Precio.ToString();
-            txtImagenUrlArticulo.Text = articulo.ImagenUrl;
-            imgArticulo.ImageUrl = txtImagenUrlArticulo.Text;
+
+            if (articulo.ImagenUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            {
+                imgArticulo.ImageUrl = articulo.ImagenUrl;
+                txtImagenUrlArticulo.Text = articulo.ImagenUrl;
+            }
+            else
+            {
+                imgArticulo.ImageUrl = "~/Images/" + articulo.ImagenUrl;
+                txtImagenUrlArticulo.Text = "";
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -111,7 +120,20 @@ namespace Catalogo_web
 
                 articulo.Categoria = new Categoria();
                 articulo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
-                articulo.ImagenUrl = txtImagenUrlArticulo.Text;
+
+                if (chkSubirArchivo.Checked)
+                {
+                    string nombreImagen = "articulo-" + DateTime.Now.Ticks + ".jpg";
+                    string ruta = Server.MapPath("./Images/");
+                    txtImagenArchivo.PostedFile.SaveAs(ruta + nombreImagen);
+
+                    articulo.ImagenUrl = nombreImagen;
+                }
+                else
+                {
+                    articulo.ImagenUrl = txtImagenUrlArticulo.Text;
+                }
+
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
 
                 if (Request.QueryString["id"] != null)
@@ -123,6 +145,7 @@ namespace Catalogo_web
                 {
                     negocio.AgregarArticulo(articulo);
                 }
+
                 Response.Redirect("GestionArticulo.aspx", false);
             }
             catch (Exception ex)
@@ -135,6 +158,8 @@ namespace Catalogo_web
         protected void txtImagenUrlArticulo_TextChanged(object sender, EventArgs e)
         {
             imgArticulo.ImageUrl = txtImagenUrlArticulo.Text;
+
+
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -149,6 +174,20 @@ namespace Catalogo_web
             {
                 Session.Add("error", ex);
                 Response.Redirect("Error.aspx", false);
+            }
+        }
+
+        protected void chkSubirArchivo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSubirArchivo.Checked)
+            {
+                divFileUpload.Visible = true;
+                divUrlImagen.Visible = false;
+            }
+            else
+            {
+                divFileUpload.Visible = false;
+                divUrlImagen.Visible = true;
             }
         }
     }

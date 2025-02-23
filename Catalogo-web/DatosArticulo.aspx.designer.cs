@@ -87,6 +87,24 @@ namespace Catalogo_web
         protected global::System.Web.UI.WebControls.Button btnEliminar;
 
         /// <summary>
+        /// Control chkSubirArchivo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkSubirArchivo;
+
+        /// <summary>
+        /// Control divUrlImagen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUrlImagen;
+
+        /// <summary>
         /// Control txtImagenUrlArticulo.
         /// </summary>
         /// <remarks>
@@ -94,6 +112,24 @@ namespace Catalogo_web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtImagenUrlArticulo;
+
+        /// <summary>
+        /// Control divFileUpload.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFileUpload;
+
+        /// <summary>
+        /// Control txtImagenArchivo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile txtImagenArchivo;
 
         /// <summary>
         /// Control imgArticulo.
