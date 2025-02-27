@@ -12,36 +12,68 @@ namespace Catalogo_web
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-            if (!Seguridad.EsAdmin(Session["usuario"]))
+            try
             {
-                Session.Add("error", "Se requieren permisos de ADMIN para acceder a esta sección.");
+                if (!Seguridad.EsAdmin(Session["usuario"]))
+                {
+                    Session.Add("error", "Se requieren permisos de ADMIN para acceder a esta sección.");
+                    Response.Redirect("Error.aspx", false);
+                }
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                dgvArticulos.DataSource = negocio.ListarArticulos();
+                dgvArticulos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
-            ArticuloNegocio negocio = new ArticuloNegocio();
-			dgvArticulos.DataSource = negocio.ListarArticulos();
-            dgvArticulos.DataBind();
         }
 
         protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var idArticulo = dgvArticulos.SelectedDataKey.Value.ToString();
-            Response.Redirect("DatosArticulo.aspx?id=" + idArticulo);
+            try
+            {
+                var idArticulo = dgvArticulos.SelectedDataKey.Value.ToString();
+                Response.Redirect("DatosArticulo.aspx?id=" + idArticulo);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Session["MostrarBoton"] = false;
-            Response.Redirect("DatosArticulo.aspx");
+            try
+            {
+                Session["MostrarBoton"] = false;
+                Response.Redirect("DatosArticulo.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         protected void dgvArticulos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "SeleccionarProducto")
+            try
             {
-                int indiceFila = Convert.ToInt32(e.CommandArgument);
-                string id = dgvArticulos.DataKeys[indiceFila].Value.ToString();
+                if (e.CommandName == "SeleccionarProducto")
+                {
+                    int indiceFila = Convert.ToInt32(e.CommandArgument);
+                    string id = dgvArticulos.DataKeys[indiceFila].Value.ToString();
 
-                Response.Redirect($"DatosArticulo.aspx?id={id}");
+                    Response.Redirect($"DatosArticulo.aspx?id={id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

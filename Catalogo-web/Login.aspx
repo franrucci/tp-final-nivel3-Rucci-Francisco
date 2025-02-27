@@ -17,7 +17,7 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Contraseña</label>
-                    <asp:TextBox runat="server" CssClass="form-control" ID="txtPassword" TextMode="Password" Placeholder="Ingrese su contraseña" />
+                    <asp:TextBox runat="server" CssClass="form-control" REQUIRED ID="txtPassword" TextMode="Password" Placeholder="Ingrese su contraseña" />
                 </div>
 
                 <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold mt-2" Visible="false"></asp:Label>

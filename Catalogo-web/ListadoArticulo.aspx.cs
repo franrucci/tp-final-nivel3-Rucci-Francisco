@@ -15,10 +15,18 @@ namespace Catalogo_web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                CargarArticulos();
-                CargarDdl();
+                if (!IsPostBack)
+                {
+                    CargarArticulos();
+                    CargarDdl();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -51,19 +59,27 @@ namespace Catalogo_web
 
         protected void BuscarButton_ServerClick(object sender, EventArgs e)
         {
-            if (Session["listaArticulos"] != null)
+            try
             {
-                List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
+                if (Session["listaArticulos"] != null)
+                {
+                    List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
 
-                // Filtro por Nombre, Marca o Categoría
-                List<Articulo> listaFiltrada = lista.FindAll(x =>
-                    x.Nombre.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()) ||
-                    (x.Marca != null && x.Marca.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper())) ||
-                    (x.Categoria != null && x.Categoria.Descripcion != null && x.Categoria.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()))
-                );
+                    // Filtro por Nombre, Marca o Categoría
+                    List<Articulo> listaFiltrada = lista.FindAll(x =>
+                        x.Nombre.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()) ||
+                        (x.Marca != null && x.Marca.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper())) ||
+                        (x.Categoria != null && x.Categoria.Descripcion != null && x.Categoria.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()))
+                    );
 
-                repeaterArticulos.DataSource = listaFiltrada;
-                repeaterArticulos.DataBind();
+                    repeaterArticulos.DataSource = listaFiltrada;
+                    repeaterArticulos.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -105,16 +121,24 @@ namespace Catalogo_web
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                throw ex;
+                Response.Redirect("Error.aspx", false);
             }
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
-            txtFiltro.Text = "";
-            ddlOrdenarTipo.SelectedIndex = ddlOrdenarTipo.Items.IndexOf(ddlOrdenarTipo.Items.FindByText("Categoría"));
-            ddlCriterio.SelectedIndex = ddlCriterio.Items.IndexOf(ddlCriterio.Items.FindByText("Contiene"));
-            CargarArticulos();
+            try
+            {
+                txtFiltro.Text = "";
+                ddlOrdenarTipo.SelectedIndex = ddlOrdenarTipo.Items.IndexOf(ddlOrdenarTipo.Items.FindByText("Categoría"));
+                ddlCriterio.SelectedIndex = ddlCriterio.Items.IndexOf(ddlCriterio.Items.FindByText("Contiene"));
+                CargarArticulos();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         public string ObtenerRutaImagen(string imagenUrl)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
+    // Clase para futuras implementaciones en el sistema.
     public class Favorito
     {
         public int Id { get; set; }

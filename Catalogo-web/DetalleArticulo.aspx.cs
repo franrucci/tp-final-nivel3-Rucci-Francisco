@@ -14,12 +14,20 @@ namespace Catalogo_web
         private int idArticulo;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString.Count == 0 || !int.TryParse(Request.QueryString["id"], out idArticulo))
+            try
             {
-                Session.Add("error", "Error");
+                if (Request.QueryString.Count == 0 || !int.TryParse(Request.QueryString["id"], out idArticulo))
+                {
+                    Session.Add("error", "Error");
+                    Response.Redirect("Error.aspx", false);
+                }
+                CargarProducto();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
-            CargarProducto();
         }
 
         public void CargarProducto()

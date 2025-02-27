@@ -15,7 +15,6 @@ namespace Catalogo_web
         protected void Page_Load(object sender, EventArgs e)
         {
             CargarArticulos();
-
         }
 
         public void CargarArticulos()
@@ -49,6 +48,5 @@ namespace Catalogo_web
 
             return "~/Images/" + imagenUrl;
         }
-
     }
 }
