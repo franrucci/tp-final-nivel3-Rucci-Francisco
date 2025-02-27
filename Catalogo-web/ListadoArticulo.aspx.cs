@@ -116,5 +116,20 @@ namespace Catalogo_web
             ddlCriterio.SelectedIndex = ddlCriterio.Items.IndexOf(ddlCriterio.Items.FindByText("Contiene"));
             CargarArticulos();
         }
+
+        public string ObtenerRutaImagen(string imagenUrl)
+        {
+            if (string.IsNullOrEmpty(imagenUrl))
+            {
+                return ArticuloNegocio.ImagenError;
+            }
+
+            if (imagenUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            {
+                return imagenUrl;
+            }
+
+            return "~/Images/" + imagenUrl;
+        }
     }
 }

@@ -14,10 +14,10 @@ namespace Catalogo_web
         private int idArticulo;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Si viene vacio debe navegar a pagina de error
             if (Request.QueryString.Count == 0 || !int.TryParse(Request.QueryString["id"], out idArticulo))
             {
-                //Response.Redirect("Error.aspx?tipo=4", true); ACA ACOMODAR SI HAY ERROR.
+                Session.Add("error", "Error");
+                Response.Redirect("Error.aspx", false);
             }
             CargarProducto();
         }

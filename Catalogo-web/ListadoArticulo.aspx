@@ -83,11 +83,11 @@
                                 <div class="col-md-4">
                                     <asp:Image
                                         ID="ImagenProducto"
-                                        ImageUrl='<%# Eval("ImagenUrl") != null && !string.IsNullOrEmpty(Eval("ImagenUrl").ToString()) ? Eval("ImagenUrl").ToString() : Negocio.ArticuloNegocio.ImagenError %>'
-                                        CssClass="img-fluid img-proyect"
+                                        runat="server"
                                         AlternateText="Imagen del producto"
+                                        CssClass="img-fluid img-proyect"
                                         onerror="ImagenError(this)"
-                                        runat="server" />
+                                        ImageUrl='<%# ObtenerRutaImagen(Eval("ImagenUrl").ToString()) %>' />
                                 </div>
 
                                 <div class="col-md-8">

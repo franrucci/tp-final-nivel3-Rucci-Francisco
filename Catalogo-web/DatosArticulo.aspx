@@ -53,13 +53,11 @@
                             <label class="form-check-label" for="chkSubirArchivo">Subir imagen desde archivo</label>
                         </div>
 
-                        <!-- Input para URL de imagen -->
                         <div class="mb-3" id="divUrlImagen" runat="server">
                             <label for="txtImagenUrlArticulo" class="form-label">URL Imagen</label>
                             <asp:TextBox runat="server" ID="txtImagenUrlArticulo" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtImagenUrlArticulo_TextChanged" />
                         </div>
 
-                        <!-- Input para subir imagen desde archivo -->
                         <%if (chkSubirArchivo.Checked)
                             {%>
                         <div class="mb-3" id="divFileUpload" runat="server">

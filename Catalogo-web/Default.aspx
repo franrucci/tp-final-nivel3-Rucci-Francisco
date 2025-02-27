@@ -26,10 +26,11 @@
                 <div class="col">
                     <div class="custom-repeater-card">
                         <div class="custom-repeater-card-image-container">
-                            <asp:Image ImageUrl='<%# Eval("ImagenUrl") != null && !string.IsNullOrEmpty(Eval("ImagenUrl").ToString()) ? Eval("ImagenUrl").ToString() : Negocio.ArticuloNegocio.ImagenError %>'
+                            <asp:Image
                                 runat="server"
                                 AlternateText="Imagen del producto"
-                                onerror="ImagenError(this)" />
+                                onerror="ImagenError(this)"
+                                ImageUrl='<%# ObtenerRutaImagen(Eval("ImagenUrl").ToString()) %>' />
                         </div>
                         <div class="custom-repeater-card-body">
                             <h5 class="custom-repeater-card-title"><%#Eval("Nombre") %></h5>

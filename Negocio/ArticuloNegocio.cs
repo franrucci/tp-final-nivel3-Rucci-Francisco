@@ -215,7 +215,7 @@ namespace Negocio
         public static string RetornarPrecioConMenosDecimales(decimal precio)
         {
             decimal precioTruncado = Math.Floor(precio * 100) / 100;
-            return precioTruncado.ToString("F2"); // Formatea a dos decimales como string
+            return precioTruncado.ToString("F2");
         }
 
         public Articulo ObtenerArticulo(int id)
@@ -257,12 +257,22 @@ namespace Negocio
 
         public static string RetornarImagenValida(string rutaImagen)
         {
-            // Valido si la ruta de la imagen empieza con "http://" o "https://"
-            if (!string.IsNullOrEmpty(rutaImagen) && (rutaImagen.StartsWith("http://") || rutaImagen.StartsWith("https://")))
+            if (string.IsNullOrEmpty(rutaImagen))
+            {
+                return ImagenError;
+            }
+
+            string[] extensionesValidas = { ".jpg", ".jpeg", ".png" };
+            if (!extensionesValidas.Any(ext => rutaImagen.EndsWith(ext, StringComparison.OrdinalIgnoreCase)))
+            {
+                return ImagenError;
+            }
+
+            if (rutaImagen.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || rutaImagen.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
             {
                 return rutaImagen;
             }
-            return ImagenError;
+            return "~/Images/" + rutaImagen;
         }
     }
 }

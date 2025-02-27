@@ -34,5 +34,21 @@ namespace Catalogo_web
         {
             return ArticuloNegocio.RetornarPrecioConMenosDecimales(precio);
         }
+
+        public string ObtenerRutaImagen(string imagenUrl)
+        {
+            if (string.IsNullOrEmpty(imagenUrl))
+            {
+                return ArticuloNegocio.ImagenError;
+            }
+
+            if (imagenUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            {
+                return imagenUrl;
+            }
+
+            return "~/Images/" + imagenUrl;
+        }
+
     }
 }

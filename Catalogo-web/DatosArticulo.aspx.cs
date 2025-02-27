@@ -36,7 +36,7 @@ namespace Catalogo_web
 
                         CargarDdlMarca(articulo.Marca.Id);
                         CargarDdlCategoria(articulo.Categoria.Id);
-                        CargarTxt(articulo);
+                        CargarDatos(articulo);
                     }
                     else
                     {
@@ -85,7 +85,7 @@ namespace Catalogo_web
                 ddlCategoria.SelectedValue = categoriaSeleccionadaId.Value.ToString();
             }
         }
-        private void CargarTxt(Articulo articulo)
+        private void CargarDatos(Articulo articulo)
         {
             txtCodigo.Text = articulo.Codigo;
             txtNombre.Text = articulo.Nombre;
