@@ -26,10 +26,10 @@
                 <div class="col">
                     <div class="custom-repeater-card">
                         <div class="custom-repeater-card-image-container">
-                            <asp:Image ImageUrl='<%# Eval("ImagenUrl") != null && !string.IsNullOrEmpty(Eval("ImagenUrl").ToString()) ? Eval("ImagenUrl").ToString() : Negocio.ArticuloNegocio.ImagenError %>' 
+                            <asp:Image ImageUrl='<%# Eval("ImagenUrl") != null && !string.IsNullOrEmpty(Eval("ImagenUrl").ToString()) ? Eval("ImagenUrl").ToString() : Negocio.ArticuloNegocio.ImagenError %>'
                                 runat="server"
                                 AlternateText="Imagen del producto"
-                                onerror="ImagenError(this)"/>
+                                onerror="ImagenError(this)" />
                         </div>
                         <div class="custom-repeater-card-body">
                             <h5 class="custom-repeater-card-title"><%#Eval("Nombre") %></h5>
@@ -37,7 +37,9 @@
                             <p class="custom-repeater-card-price">
                                 <strong>Precio:</strong> $<%# RetornarPrecioConMenosDecimales((decimal)Eval("Precio")) %>
                             </p>
-                            <a href="DetalleArticulo.aspx?id=<%#Eval("Id") %>">Ver Detalle</a>
+                            <a href="DetalleArticulo.aspx?id=<%#Eval("Id") %>" class="btn btn-primary btn-sm rounded-pill">
+                                <i class="bi bi-eye"></i>Ver Detalle
+                            </a>
                         </div>
                     </div>
                 </div>

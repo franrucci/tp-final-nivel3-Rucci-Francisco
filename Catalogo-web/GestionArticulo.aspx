@@ -16,7 +16,11 @@
                     <asp:BoundField DataField="Marca.Descripcion" HeaderText="Marca" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Categoria.Descripcion" HeaderText="Categoría" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Precio" HeaderText="Precio" DataFormatString="{0:C}" HeaderStyle-CssClass="table-dark" />
-                    <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" HeaderText="Acción" HeaderStyle-CssClass="table-dark" />
+                    <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Seleccionar"
+                        HeaderText="Acción"
+                        ItemStyle-CssClass="text-center"
+                        ControlStyle-CssClass="btn btn-primary btn-sm rounded-pill"
+                        HeaderStyle-CssClass="table-dark" />
                 </Columns>
             </asp:GridView>
         </div>
