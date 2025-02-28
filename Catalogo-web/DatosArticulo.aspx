@@ -36,7 +36,7 @@
                     <label for="txtPrecio" class="form-label">Precio</label>
                     <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
                     <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtPrecio" ErrorMessage="Campo requerido" Display="Dynamic" />
-                    <asp:RegularExpressionValidator CssClass="validacion" runat="server" ControlToValidate="txtPrecio" ErrorMessage="Solo se permiten números." ValidationExpression="^[0-9]+$" />
+                    <asp:RegularExpressionValidator CssClass="validacion" runat="server" ControlToValidate="txtPrecio" ErrorMessage="Solo se permiten números." ValidationExpression="^\d+([,\.]\d{1,2})?$" />
                 </div>
 
                 <div class="d-flex justify-content-between">
