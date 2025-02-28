@@ -10,14 +10,19 @@
                 <div class="mb-3">
                     <label for="txtCodigo" class="form-label">Código</label>
                     <asp:TextBox runat="server" ID="txtCodigo" CssClass="form-control" />
+                    <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtCodigo" ErrorMessage="Campo requerido" Display="Dynamic" />
+                    <asp:RegularExpressionValidator CssClass="validacion" runat="server" ControlToValidate="txtCodigo" ErrorMessage="Solo se permiten números y letras sin espacios." ValidationExpression="^[a-zA-Z0-9]+$" Display="Dynamic" />
                 </div>
                 <div class="mb-3">
                     <label for="txtNombre" class="form-label">Nombre</label>
                     <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+                    <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtNombre" ErrorMessage="Campo requerido" Display="Dynamic" />
+                    <asp:RegularExpressionValidator CssClass="validacion" runat="server" ControlToValidate="txtNombre" ErrorMessage="Solo se permiten letras" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+( [a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*$" Display="Dynamic" />
                 </div>
                 <div class="mb-3">
                     <label for="txtDescripcion" class="form-label">Descripción</label>
                     <asp:TextBox runat="server" TextMode="MultiLine" ID="txtDescripcion" CssClass="form-control" />
+                    <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtDescripcion" ErrorMessage="Campo requerido" Display="Dynamic" />
                 </div>
                 <div class="mb-3">
                     <label for="ddlMarca" class="form-label">Marca</label>
@@ -30,6 +35,8 @@
                 <div class="mb-3">
                     <label for="txtPrecio" class="form-label">Precio</label>
                     <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
+                    <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtPrecio" ErrorMessage="Campo requerido" Display="Dynamic" />
+                    <asp:RegularExpressionValidator CssClass="validacion" runat="server" ControlToValidate="txtPrecio" ErrorMessage="Solo se permiten números." ValidationExpression="^[0-9]+$" />
                 </div>
 
                 <div class="d-flex justify-content-between">
@@ -42,7 +49,6 @@
                         <a href="GestionArticulo.aspx" class="btn btn-secondary">Cancelar</a>
                     </div>
                 </div>
-
             </div>
 
             <div class="col-md-6">

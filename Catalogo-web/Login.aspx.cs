@@ -18,10 +18,14 @@ namespace Catalogo_web
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario();
-            UsuarioNegocio negocio = new UsuarioNegocio();
             try
             {
+                Page.Validate();
+                if (!Page.IsValid) 
+                    return;
+
+                Usuario usuario = new Usuario();
+                UsuarioNegocio negocio = new UsuarioNegocio();
                 usuario.Email = txtEmail.Text;
                 usuario.Password = txtPassword.Text;
                 if (negocio.ValidarUsuario(usuario)) // Si se logueo correctamente

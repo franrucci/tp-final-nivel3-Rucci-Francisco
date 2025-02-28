@@ -35,7 +35,7 @@ namespace Catalogo_web
             try
             {
                 var idArticulo = dgvArticulos.SelectedDataKey.Value.ToString();
-                Response.Redirect("DatosArticulo.aspx?id=" + idArticulo);
+                Response.Redirect("DatosArticulo.aspx?id=" + idArticulo, false);
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace Catalogo_web
             try
             {
                 Session["MostrarBoton"] = false;
-                Response.Redirect("DatosArticulo.aspx");
+                Response.Redirect("DatosArticulo.aspx", false);
             }
             catch (Exception ex)
             {

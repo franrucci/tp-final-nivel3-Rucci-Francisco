@@ -108,6 +108,10 @@ namespace Catalogo_web
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 ArticuloNegocio negocio = new ArticuloNegocio();
 
                 Articulo articulo = new Articulo();
