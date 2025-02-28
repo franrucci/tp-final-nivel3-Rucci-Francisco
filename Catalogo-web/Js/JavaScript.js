@@ -15,4 +15,3 @@ function toggleMenu() {
         overlay.style.display = "block";
     }
 }
-

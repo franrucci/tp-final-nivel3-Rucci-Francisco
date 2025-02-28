@@ -20,6 +20,13 @@ namespace Catalogo_web
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+                {
+                    Session.Add("Error", "Los campos Email y Contraseña estan vacios.");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
+
                 Page.Validate();
                 if (!Page.IsValid) 
                     return;

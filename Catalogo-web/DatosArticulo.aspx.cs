@@ -108,6 +108,16 @@ namespace Catalogo_web
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtCodigo.Text) ||
+                    string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                    string.IsNullOrWhiteSpace(txtDescripcion.Text) ||
+                    string.IsNullOrWhiteSpace(txtPrecio.Text))
+                {
+                    Session.Add("error", "Hay campos obligatorios que estan vacios.");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
+
                 Page.Validate();
                 if (!Page.IsValid)
                     return;
