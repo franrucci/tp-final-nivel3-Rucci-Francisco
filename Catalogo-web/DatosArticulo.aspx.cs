@@ -90,7 +90,6 @@ namespace Catalogo_web
             txtCodigo.Text = articulo.Codigo;
             txtNombre.Text = articulo.Nombre;
             txtDescripcion.Text = articulo.Descripcion;
-            //txtPrecio.Text = articulo.Precio.ToString();
             txtPrecio.Text = articulo.Precio.ToString().Replace(",", "").Replace(".", "");
 
 
