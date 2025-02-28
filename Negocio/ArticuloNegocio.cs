@@ -98,7 +98,7 @@ namespace Negocio
                             break;
                     }
                 }
-                else // Aca es para "Precio"
+                else // para "Precio"
                 {
                     switch (criterio)
                     {

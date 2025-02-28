@@ -13,7 +13,7 @@ namespace Catalogo_web
 		{
             if (Session["error"] != null)
             {
-                lblError.Text = Session["error"].ToString(); // Muestra el error en la página
+                lblError.Text = Session["error"].ToString();
                 Session["error"] = null; // Limpia la sesión después de mostrar el error
             }
             else
