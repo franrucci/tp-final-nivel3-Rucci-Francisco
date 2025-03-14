@@ -85,13 +85,13 @@ namespace Catalogo_web
                 ddlCategoria.SelectedValue = categoriaSeleccionadaId.Value.ToString();
             }
         }
+        
         private void CargarDatos(Articulo articulo)
         {
             txtCodigo.Text = articulo.Codigo;
             txtNombre.Text = articulo.Nombre;
             txtDescripcion.Text = articulo.Descripcion;
-            txtPrecio.Text = articulo.Precio.ToString().Replace(",", "").Replace(".", "");
-
+            txtPrecio.Text = articulo.Precio.ToString("F2"); // "F2" asegura 2 decimales.
 
             if (articulo.ImagenUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
             {
@@ -101,7 +101,15 @@ namespace Catalogo_web
             else
             {
                 imgArticulo.ImageUrl = "~/Images/" + articulo.ImagenUrl;
-                txtImagenUrlArticulo.Text = "";
+                // Solo borrar el texto si no hay archivo subido
+                if (string.IsNullOrEmpty(articulo.ImagenUrl) || chkSubirArchivo.Checked)
+                {
+                    txtImagenUrlArticulo.Text = "";
+                }
+                else
+                {
+                    txtImagenUrlArticulo.Text = articulo.ImagenUrl;
+                }
             }
         }
 
@@ -136,6 +144,7 @@ namespace Catalogo_web
                 articulo.Categoria = new Categoria();
                 articulo.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
 
+                // Verifica si se sube un nuevo archivo o se utiliza la URL
                 if (chkSubirArchivo.Checked)
                 {
                     string nombreImagen = "articulo-" + DateTime.Now.Ticks + ".jpg";
@@ -144,7 +153,7 @@ namespace Catalogo_web
 
                     articulo.ImagenUrl = nombreImagen;
                 }
-                else
+                else if (!string.IsNullOrEmpty(txtImagenUrlArticulo.Text))
                 {
                     articulo.ImagenUrl = txtImagenUrlArticulo.Text;
                 }
@@ -173,8 +182,6 @@ namespace Catalogo_web
         protected void txtImagenUrlArticulo_TextChanged(object sender, EventArgs e)
         {
             imgArticulo.ImageUrl = txtImagenUrlArticulo.Text;
-
-
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
