@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.IO;
+using System.Net.Http;
 
 namespace Negocio
 {
     public class ArticuloNegocio
     {
         public const string ImagenError = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
+
         public List<Articulo> ListarArticulos()
         {
             List<Articulo> listaArticulos = new List<Articulo>();
@@ -262,16 +264,20 @@ namespace Negocio
                 return ImagenError;
             }
 
+            // Primero, si es una URL, la retornamos directamente sin validar la extensión
+            if (rutaImagen.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+                rutaImagen.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                return rutaImagen;
+            }
+
+            // Luego, validamos extensiones para imágenes locales
             string[] extensionesValidas = { ".jpg", ".jpeg", ".png" };
             if (!extensionesValidas.Any(ext => rutaImagen.EndsWith(ext, StringComparison.OrdinalIgnoreCase)))
             {
                 return ImagenError;
             }
 
-            if (rutaImagen.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || rutaImagen.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-            {
-                return rutaImagen;
-            }
             return "~/Images/" + rutaImagen;
         }
     }
