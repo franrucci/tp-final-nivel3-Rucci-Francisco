@@ -17,7 +17,8 @@
                     <label for="txtNombre" class="form-label">Nombre</label>
                     <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
                     <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtNombre" ErrorMessage="Campo requerido" Display="Dynamic" />
-                    <asp:RegularExpressionValidator CssClass="validacion" runat="server" ControlToValidate="txtNombre" ErrorMessage="Solo se permiten letras" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+( [a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*$" Display="Dynamic" />
+                    <asp:RegularExpressionValidator CssClass="validacion" runat="server" ControlToValidate="txtNombre" ErrorMessage="Solo se permiten letras y números" ValidationExpression="^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$" Display="Dynamic" />
+
                 </div>
                 <div class="mb-3">
                     <label for="txtDescripcion" class="form-label">Descripción</label>
