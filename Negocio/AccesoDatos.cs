@@ -61,6 +61,21 @@ namespace Negocio
             }
         }
 
+        public int EjecutarAccionScalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return int.Parse(comando.ExecuteScalar().ToString()); // Devuelvo el valor del primer registro de la primera columna de la consulta. Que en este caso es el Id del usuario insertado.
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public void SetearParametro(string nombre, object valor)
         {
             comando.Parameters.AddWithValue(nombre, valor);

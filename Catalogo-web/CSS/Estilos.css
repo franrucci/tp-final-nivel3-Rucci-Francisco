@@ -201,3 +201,8 @@
     color: red;
     font-size: 12px;
 }
+
+.btn-outline-primary, .btn-outline-success {
+    display: inline-flex;
+    align-items: center;
+}

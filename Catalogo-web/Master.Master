@@ -25,6 +25,7 @@
                     ☰
                 </button>
 
+                <%--Si NO hay un usuario logueado, muestra estos botones--%>
                 <% if (!Negocio.Seguridad.SesionActiva(Session["usuario"]))
                     { %>
                 <div class="navbar-nav menu-normal">
@@ -33,18 +34,25 @@
                 </div>
                 <div class="d-flex ms-auto">
                     <a class="btn btn-outline-primary me-2" href="Login.aspx">Iniciar Sesión</a>
+                    <a class="btn btn-outline-success me-2" href="Registro.aspx">Registrarse</a>
                 </div>
-
                 <% }
                     else
                     { %>
                 <div class="navbar-nav menu-normal">
                     <a class="nav-link btn btn-link" href="Default.aspx">Inicio</a>
                     <a class="nav-link btn btn-link" href="ListadoArticulo.aspx">Catálogo</a>
+                    <a class="nav-link btn btn-link" href="MiPerfil.aspx">Mi Perfil</a>
 
+                    <%--Valido si el usuario logueado es un usuario ADMIN, para mostrarle los botones--%>
                     <% if (Negocio.Seguridad.EsAdmin(Session["usuario"]))
                         { %>
                     <a class="nav-link btn btn-link" href="GestionArticulo.aspx">Gestión de productos</a>
+                    <% }
+                        else
+                        { %>
+                    <%-- Si el usuario está logueado y NO es admin, se muestra "Favoritos" --%>
+                    <a class="nav-link btn btn-link" href="Favoritos.aspx">Favoritos</a>
                     <% } %>
                 </div>
 
@@ -59,8 +67,29 @@
             <button class="close-btn" onclick="toggleMenu()">×</button>
             <a href="Default.aspx">Inicio</a>
             <a href="ListadoArticulo.aspx">Catálogo</a>
+
+            <% if (Negocio.Seguridad.SesionActiva(Session["usuario"]))
+                { %>
+            <a href="MiPerfil.aspx">Mi Perfil</a>
+
+            <% if (Negocio.Seguridad.EsAdmin(Session["usuario"]))
+                { %>
             <a href="GestionArticulo.aspx">Gestión de productos</a>
+            <% }
+            else
+            { %>
+            <a href="Favoritos.aspx">Favoritos</a>
+            <% } %>
+
+            <asp:Button ID="btnCerrarSesionSidebar" runat="server" Text="Cerrar Sesión" CssClass="btn btn-outline-danger mt-2" OnClick="btnCerrarSesion_Click" />
+            <% }
+            else
+            { %>
+            <a href="Login.aspx">Iniciar Sesión</a>
+            <a href="Registro.aspx">Registrarse</a>
+            <% } %>
         </div>
+
 
         <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 

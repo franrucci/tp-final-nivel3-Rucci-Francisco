@@ -13,14 +13,13 @@ namespace Catalogo_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Page is Login || Page is Default || Page is DetalleArticulo || Page is ListadoArticulo || Page is Error))
+            if (!(Page is Login || Page is Default || Page is DetalleArticulo || Page is ListadoArticulo || Page is Error || Page is Registro))
             {
                 if (!Seguridad.SesionActiva(Session["usuario"]))
                 {
                     Response.Redirect("Login.aspx", false);
                 }
             }
-
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)

@@ -20,30 +20,35 @@ namespace Catalogo_web
         {
             try
             {
+                // --------------------------------------------------------------------------------
+                // VALIDACIONES EXTRA DE CAMPOS VACIOS EN EL FORMULARIO DE LOGIN
                 if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
                 {
                     Session.Add("Error", "Los campos Email y Contraseña estan vacios.");
                     Response.Redirect("Error.aspx", false);
-                    return;
+                    return; // Detengo la ejecucion del metodo, no sigue con las siguientes lineas.
                 }
+                //--------------------------------------------------------------------------------
 
-                Page.Validate();
+                Page.Validate(); // Valido los controles del formulario.
                 if (!Page.IsValid) 
-                    return;
+                    return; // Si no se cumple la validacion de los controles del fomrulario, se detiene la ejecucion del metodo, no sigue con las siguientes lineas.
 
                 Usuario usuario = new Usuario();
                 UsuarioNegocio negocio = new UsuarioNegocio();
+
                 usuario.Email = txtEmail.Text;
                 usuario.Password = txtPassword.Text;
-                if (negocio.ValidarUsuario(usuario)) // Si se logueo correctamente
+
+                if (negocio.ValidarUsuario(usuario)) // Si este metodo devuelve TRUE, es porque existe el usuario en la base de datos.
                 {
-                    Session.Add("usuario", usuario);
-                    Response.Redirect("Default.aspx", false);
+                    Session.Add("usuario", usuario); // Guardo el usuario en la sesion.
+                    Response.Redirect("Default.aspx", false); // Redirecciono a la pagina principal Default.aspx.
                 }
                 else
                 {
-                    lblError.Text = "Usuario o contraseña incorrectos.";
-                    lblError.Visible = true;
+                    lblError.Text = "Usuario o contraseña incorrectos."; // Si el usuario no existe en la base de datos, muestro un mensaje de error.
+                    lblError.Visible = true; // Hago visible el mensaje de error.
                 }
             }
             catch (Exception ex)
