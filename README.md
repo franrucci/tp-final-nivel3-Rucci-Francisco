@@ -20,3 +20,6 @@ Esta web está diseñada para comercios y emprendimientos que deseen mostrar su 
 
 ## Link de enlace a la página web
 http://catalogo-net.somee.com/
+
+## Próximas mejoras
+Actualmente, estoy trabajando en nuevas funcionalidades. ¡Se vienen actualizaciones pronto!
