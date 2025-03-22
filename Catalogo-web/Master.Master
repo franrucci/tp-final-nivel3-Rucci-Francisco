@@ -56,9 +56,11 @@
                     <% } %>
                 </div>
 
-                <div class="d-flex ms-auto">
+                <div class="d-flex ms-auto align-items-center">
+                    <asp:Image ID="imgAvatar" runat="server" CssClass="rounded-circle me-2" Style="height: 40px; width: 40px; border-radius: 50%;" />
                     <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión" CssClass="btn btn-outline-danger" OnClick="btnCerrarSesion_Click" />
                 </div>
+
                 <% } %>
             </div>
         </nav>
@@ -76,15 +78,14 @@
                 { %>
             <a href="GestionArticulo.aspx">Gestión de productos</a>
             <% }
-            else
-            { %>
+                else
+                { %>
             <a href="Favoritos.aspx">Favoritos</a>
             <% } %>
 
-            <asp:Button ID="btnCerrarSesionSidebar" runat="server" Text="Cerrar Sesión" CssClass="btn btn-outline-danger mt-2" OnClick="btnCerrarSesion_Click" />
             <% }
-            else
-            { %>
+                else
+                { %>
             <a href="Login.aspx">Iniciar Sesión</a>
             <a href="Registro.aspx">Registrarse</a>
             <% } %>

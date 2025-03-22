@@ -148,8 +148,8 @@ namespace Catalogo_web
                 if (chkSubirArchivo.Checked)
                 {
                     string nombreImagen = "articulo-" + DateTime.Now.Ticks + ".jpg";
-                    string ruta = Server.MapPath("./Images/");
-                    txtImagenArchivo.PostedFile.SaveAs(ruta + nombreImagen);
+                    string ruta = Server.MapPath("./Images/"); // Es la ruta fisica en la que voy a trabajar
+                    txtImagenArchivo.PostedFile.SaveAs(ruta + nombreImagen); // Obtengo lo datos del archivo que selecciono el usuario, le sumo el nombre y lo guardo en la ruta.
 
                     articulo.ImagenUrl = nombreImagen;
                 }
