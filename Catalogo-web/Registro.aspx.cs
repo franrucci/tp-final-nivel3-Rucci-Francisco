@@ -26,6 +26,13 @@ namespace Catalogo_web
 
                 usuario.Email = txtEmail.Text;
                 usuario.Password = txtPassword.Text;
+                bool usuarioExistente = negocio.ValidarEmail(usuario.Email);
+                if (usuarioExistente)
+                {
+                    lblError.Text = "El email ingresado ya se encuentra registrado.";
+                    lblError.Visible = true;
+                    return;
+                }
                 usuario.IdUsuario = negocio.RegistrarUsuario(usuario); // Este metodo devuelve el Id del usuario insertado.
                 Session.Add("usuario", usuario);
 

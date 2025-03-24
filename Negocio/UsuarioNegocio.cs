@@ -114,6 +114,30 @@ namespace Negocio
             }
         }
 
+        public bool ValidarEmail(string txtEmail)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("SELECT COUNT(*) FROM USERS WHERE email = @email");
+                datos.SetearParametro("@email", txtEmail);
+                datos.EjecutarLectura();
+
+                if (datos.Lector.Read() && datos.Lector.GetInt32(0) > 0)
+                {
+                    return true; // El email ya está registrado.
+                }
+                return false; // El email no está registrado.
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al validar el email: " + ex.Message);
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
 }

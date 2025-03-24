@@ -12,20 +12,20 @@
                     <div class="mb-3">
                         <label class="form-label fw-bold">Email</label>
                         <asp:TextBox runat="server" CssClass="form-control" ID="txtEmail" Placeholder="Ingrese su email" />
-                        <%--                        <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtEmail" ErrorMessage="Campo requerido" Display="Dynamic" />
-                        <asp:RegularExpressionValidator CssClass="validacion" ErrorMessage="Formato de E-mail incorrecto" ControlToValidate="txtEmail" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" runat="server" Display="Dynamic" />--%>
+                        <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtEmail" ErrorMessage="Campo requerido" Display="Dynamic" />
+                        <asp:RegularExpressionValidator CssClass="validacion" ErrorMessage="Formato de E-mail incorrecto" ControlToValidate="txtEmail" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" runat="server" Display="Dynamic" />
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">Contraseña</label>
                         <asp:TextBox runat="server" CssClass="form-control" ID="txtPassword" TextMode="Password" Placeholder="Ingrese su contraseña" />
-                        <%--                        <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtPassword" ErrorMessage="Campo requerido" />--%>
+                        <asp:RequiredFieldValidator CssClass="validacion" runat="server" ControlToValidate="txtPassword" ErrorMessage="Campo requerido" />
                     </div>
 
                     <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold mt-2" Visible="false"></asp:Label>
 
                     <div class="d-grid gap-3 mt-3">
-                        <asp:Button Text="Ingresar" CssClass="btn btn-primary btn-lg" ID="btnRegistrarse" OnClick="btnRegistrarse_Click" runat="server" />
+                        <asp:Button Text="Registrarse" CssClass="btn btn-primary btn-lg" ID="btnRegistrarse" OnClick="btnRegistrarse_Click" runat="server" />
                         <a href="/" class="btn btn-outline-secondary btn-lg">Cancelar</a>
                     </div>
                 </asp:Panel>
