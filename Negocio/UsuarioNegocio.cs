@@ -97,8 +97,8 @@ namespace Negocio
                 {
                     usuario.IdUsuario = (int)datos.Lector["Id"];
                     usuario.Email = (string)datos.Lector["Email"];
-                    usuario.Nombre = (string)datos.Lector["Nombre"];
-                    usuario.Apellido = (string)datos.Lector["apellido"];
+                    usuario.Nombre = datos.Lector["Nombre"] is DBNull ? "" : datos.Lector["Nombre"].ToString();
+                    usuario.Apellido = datos.Lector["Apellido"] is DBNull ? "" : datos.Lector["Apellido"].ToString();
                     if (!(datos.Lector["urlImagenPerfil"] is DBNull))
                         usuario.UrlImagenPerfil = (string)datos.Lector["urlImagenPerfil"];
                 }
@@ -113,5 +113,7 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+
     }
 }

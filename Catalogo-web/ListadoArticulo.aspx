@@ -96,7 +96,21 @@
                                         <h5 class="card-brand text-uppercase text-secondary"><span><%#Eval("Marca.Descripcion")%></span></h5>
                                         <h5 class="card-title text-primary fw-bold mt-3"><%#Eval("Nombre") %></h5>
                                         <p class="card-price text-success fw-bold fs-5">$<%# RetornarPrecioConMenosDecimales((decimal)Eval("Precio")) %></p>
-                                        <a href="DetalleArticulo.aspx?id=<%#Eval("Id") %>" class="btn btn-outline-primary mt-3">Ver Detalle</a>
+
+                                        <div class="d-flex gap-2 mt-3">
+                                            <a href="DetalleArticulo.aspx?id=<%#Eval("Id") %>" class="btn btn-outline-primary btn-sm">Ver Detalle</a>
+
+                                            <% if (Negocio.Seguridad.SesionActiva(Session["usuario"]) && !Negocio.Seguridad.EsAdmin(Session["usuario"]))
+                                                { %>
+                                            <asp:Button
+                                                ID="btnFavorito"
+                                                runat="server"
+                                                CssClass='<%# EsFavorito(Eval("Id")) ? "btn btn-danger btn-sm" : "btn btn-outline-primary btn-sm" %>'
+                                                CommandArgument='<%# Eval("Id") %>'
+                                                OnClick="btnFavorito_Click"
+                                                Text="❤ Favorito" />
+                                            <% } %>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

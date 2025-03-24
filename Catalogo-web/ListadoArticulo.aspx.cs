@@ -33,8 +33,21 @@ namespace Catalogo_web
         public void CargarArticulos()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            Session.Add("listaArticulos", negocio.ListarArticulos());
-            repeaterArticulos.DataSource = Session["listaArticulos"];
+            listaArticulos = negocio.ListarArticulos();
+            Session.Add("listaArticulos", listaArticulos);
+
+            // Verifica si el usuario ha marcado algún artículo como favorito
+            if (Session["usuario"] != null)
+            {
+                Usuario usuarioActual = (Usuario)Session["usuario"];
+                FavoritoNegocio favoritoNegocio = new FavoritoNegocio();
+                List<int> favoritosUsuario = favoritoNegocio.ObtenerFavoritos(usuarioActual.IdUsuario);
+
+                // Almacena los IDs de los favoritos en ViewState
+                ViewState["Favoritos"] = favoritosUsuario;
+            }
+
+            repeaterArticulos.DataSource = listaArticulos;
             repeaterArticulos.DataBind();
         }
 
@@ -154,6 +167,46 @@ namespace Catalogo_web
             }
 
             return "~/Images/" + imagenUrl;
+        }
+
+        protected bool EsFavorito(object idArticulo)
+        {
+            if (ViewState["Favoritos"] != null)
+            {
+                List<int> favoritos = (List<int>)ViewState["Favoritos"];
+                return favoritos.Contains(Convert.ToInt32(idArticulo));
+            }
+            return false;
+        }
+
+        protected void btnFavorito_Click(object sender, EventArgs e)
+        {
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            FavoritoNegocio favoritoNegocio = new FavoritoNegocio();
+            try
+            {
+                Button btn = (Button)sender;
+                int idArticulo = int.Parse(btn.CommandArgument);
+                Usuario usuarioActual = (Usuario)Session["usuario"];
+
+
+                if (favoritoNegocio.EsFavorito(usuarioActual.IdUsuario, idArticulo))
+                {
+                    favoritoNegocio.EliminarFavorito(usuarioActual.IdUsuario, idArticulo);
+                }
+                else
+                {
+                    favoritoNegocio.AgregarFavorito(usuarioActual.IdUsuario, idArticulo);
+                }
+
+                // Recarga la lista para reflejar cambios
+                CargarArticulos();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+            }
         }
     }
 }

@@ -15,3 +15,9 @@ function toggleMenu() {
         overlay.style.display = "block";
     }
 }
+
+function toggleFavorito(element) {
+   
+    element.classList.toggle("favorito");
+}
+

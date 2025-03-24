@@ -14,19 +14,39 @@ namespace Catalogo_web
         public List<Articulo> listaArticulos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarArticulos();
+            if (!IsPostBack)
+            {
+                CargarArticulos();
+            }
         }
 
         public void CargarArticulos()
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            listaArticulos = negocio.ListarArticulos();
-            Session.Add("listaArticulos", listaArticulos);
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                listaArticulos = negocio.ListarArticulos().Take(6).ToList(); // Toma solo 6 artículos
+                Session["listaArticulos"] = listaArticulos;
 
-            RepeaterArticulos.DataSource = listaArticulos;
-            RepeaterArticulos.DataBind();
+                if (listaArticulos.Count == 0)
+                {
+                    lblMensaje.Visible = true; // Muestra el mensaje si no hay artículos
+                    RepeaterArticulos.Visible = false; // Oculta el Repeater
+                }
+                else
+                {
+                    lblMensaje.Visible = false; // Oculta el mensaje si hay artículos
+                    RepeaterArticulos.Visible = true; // Muestra el Repeater
+                    RepeaterArticulos.DataSource = listaArticulos;
+                    RepeaterArticulos.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
+            }
         }
-
 
         // Formatea el precio
         public string RetornarPrecioConMenosDecimales(decimal precio)
