@@ -216,7 +216,6 @@
     transition: transform 0.2s ease-in-out;
 }
 
-/* Estilo del botón de favorito */
 .btn-favorito {
     background-color: white;
     color: black;
